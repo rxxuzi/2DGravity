@@ -19,7 +19,7 @@ public class Core extends JPanel {
 //        spheres.add(new Sphere(50,402,402));
         System.out.println(spheres.size());
 
-//        spheres.add(new Sphere(50,400,600,true));
+//        spheres.add(new Sphere(30,400,300,true));
     }
 
     @Override
@@ -88,11 +88,11 @@ public class Core extends JPanel {
         double c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
         double d = s1.r + s2.r;
         double angle = Math.atan(b/a);
-        double dy = 1;
-        double dx = 1;
+
+        double dx = 1.5d;
 
         if(c <= d){
-            Log.write(s1 +","+ s2 + "covered , s1: (" + s1.cx + "," + s1.cy + "), s2: (" + s2.cx + "," + s2.cy + ")");
+//            Log.write(s1 +","+ s2 + "covered , s1: (" + s1.cx + "," + s1.cy + "), s2: (" + s2.cx + "," + s2.cy + ")");
             s1.move(angle,dx,(s1.x > s2.x) , (s1.y > s2.y));
             s2.move(angle,dx,(s1.x < s2.x) , (s1.y < s2.y));
         }

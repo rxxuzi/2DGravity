@@ -3,7 +3,7 @@ package main;
 import java.awt.*;
 
 public class Sphere {
-    public static final boolean Fall = false;
+    public static final boolean Fall = true;
 
     public double r;
     public double x;
@@ -17,15 +17,18 @@ public class Sphere {
     public double cx;
     public double cy;
 
+    Color C;
+
     public double gx = 0d;
     public double gy = 0d;
 
-    Sphere(double r, double x, double y) {
+    Sphere(double r, double x, double y , Color C) {
         this.r = r;
         this.x = x;
         this.y = y;
         this.cx = x + r;
         this.cy = y + r;
+        this.C = C;
     }
 
     Sphere(double r, double x, double y, boolean isFixed) {
@@ -38,16 +41,19 @@ public class Sphere {
     }
 
     public void move(double angle , double d , boolean positiveX , boolean positiveY){
+        double t = 1;
+        if(Fall) t = 2;
+
         if(!isFixed){
             if(positiveX){
-                this.x += Math.cos(angle) / d;
+                this.x += Math.cos(angle) * d;
             }else{
-                this.x -= Math.cos(angle) / d;
+                this.x -= Math.cos(angle) * d;
             }
             if(positiveY){
-                this.y += Math.sin(angle) / d;
+                this.y += Math.sin(angle) * d;
             }else {
-                this.y -= Math.sin(angle) / d;
+                this.y -= Math.sin(angle) * d * t;
             }
         }
 
@@ -59,6 +65,7 @@ public class Sphere {
     }
     public void fill(Graphics g){
         if(isFixed) g.setColor(Color.WHITE);
+        g.setColor(C);
         g.fillOval((int) x, (int) y, (int) r*2, (int) r*2);
     }
 

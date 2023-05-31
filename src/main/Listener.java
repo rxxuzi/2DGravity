@@ -1,25 +1,58 @@
 package main;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Random;
 
 public class Listener implements MouseListener, MouseMotionListener {
+    Random R = new Random();
 
     public int mx;
     public int my;
-    private static final int rad = 50;
+    private static final int rad = 30;
+    public static int clickCount = 0;
+    private static final int numOfColor = 12;
+
+    private Color set(int r, int g, int b){
+        return new Color(r, g, b);
+    }
+
+    private Color set(){
+        return switch (clickCount % numOfColor){
+            case 0 -> new Color(255,30,30);
+            case 1 -> new Color(255,125,30);
+            case 2 -> new Color(255,255,30);
+            case 3 -> new Color(125,255,30);
+            case 4 -> new Color(30,255,30);
+            case 5 -> new Color(30,255,125);
+            case 6 -> new Color(30,255,255);
+            case 7 -> new Color(30,125,255);
+            case 8 -> new Color(30,30,255);
+            case 9 -> new Color(125,30,255);
+            case 10 -> new Color(255,30,255);
+            case 11 -> new Color(255,30,125);
+            default -> new Color(0,0,0);
+        };
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        mx = e.getX();
-        my = e.getY();
-        Core.spheres.add(new Sphere(rad, mx - rad, my - rad));
+//        mx = e.getX();
+//        my = e.getY();
+////        int rad = R.nextInt(30) * 2 + 10;
+//        Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set()));
+//        clickCount++;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        mx = e.getX();
+        my = e.getY();
+//        int rad = R.nextInt(30) * 2 + 10;
+        Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set()));
+        clickCount++;
     }
 
     @Override
