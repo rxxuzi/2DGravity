@@ -32,9 +32,7 @@ public class Core extends JPanel {
         for(int i = 0 ; i < spheres.size() ; i ++ ){
             for(int j = 0 ; j < i ; j ++ ){
                 sameCoordinates(spheres.get(i), spheres.get(j));
-                if(i != j){
-                    Calculate(spheres.get(i), spheres.get(j));
-                }
+                Calculate(spheres.get(i), spheres.get(j));
             }
 
             border(spheres.get(i));
@@ -54,9 +52,13 @@ public class Core extends JPanel {
 
     private void sameCoordinates(Sphere s1 , Sphere s2){
         if(s1.x == s2.x && s1.y == s2.y){
-            s1.x += Math.random();
-            s1.y += Math.random();
+            s1.x += Math.random() * randomNegative();
+            s1.y += Math.random() * randomNegative();
         }
+    }
+
+    private int randomNegative(){
+        return R.nextBoolean() ? -1 : 1;
     }
 
     private double abs(double a){
@@ -91,10 +93,8 @@ public class Core extends JPanel {
 
         if(c <= d){
             Log.write(s1 +","+ s2 + "covered , s1: (" + s1.cx + "," + s1.cy + "), s2: (" + s2.cx + "," + s2.cy + ")");
-
             s1.move(angle,dx,(s1.x > s2.x) , (s1.y > s2.y));
             s2.move(angle,dx,(s1.x < s2.x) , (s1.y < s2.y));
-
         }
         repaint();
     }

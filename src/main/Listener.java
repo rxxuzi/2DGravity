@@ -8,13 +8,13 @@ public class Listener implements MouseListener, MouseMotionListener {
 
     public int mx;
     public int my;
-    private static final int r = 20;
+    private static final int rad = 50;
 
     @Override
     public void mouseClicked(MouseEvent e) {
         mx = e.getX();
         my = e.getY();
-        Core.spheres.add(new Sphere(r, mx - r, my - r));
+        Core.spheres.add(new Sphere(rad, mx - rad, my - rad));
     }
 
     @Override
