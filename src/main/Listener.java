@@ -8,7 +8,7 @@ public class Listener implements MouseListener, MouseMotionListener {
 
     public int mx;
     public int my;
-    private static final int r = 10;
+    private static final int r = 20;
 
     @Override
     public void mouseClicked(MouseEvent e) {

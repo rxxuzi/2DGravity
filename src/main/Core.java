@@ -18,6 +18,8 @@ public class Core extends JPanel {
 //        spheres.add(new Sphere(50,401,403));
 //        spheres.add(new Sphere(50,402,402));
         System.out.println(spheres.size());
+
+//        spheres.add(new Sphere(50,400,600,true));
     }
 
     @Override
@@ -72,6 +74,9 @@ public class Core extends JPanel {
         }
         if (s.y > getHeight() - s.r*2){
             s.y = getHeight() - s.r*2;
+            s.onTheFloor = true;
+        }else{
+            s.onTheFloor = false;
         }
 
     }
@@ -83,25 +88,12 @@ public class Core extends JPanel {
         double angle = Math.atan(b/a);
         double dy = 1;
         double dx = 1;
-        if(c <= d){
 
+        if(c <= d){
             Log.write(s1 +","+ s2 + "covered , s1: (" + s1.cx + "," + s1.cy + "), s2: (" + s2.cx + "," + s2.cy + ")");
 
-            if(s1.y > s2.y){
-                s1.y += Math.sin(angle) / dy;
-                s2.y -= Math.sin(angle) / dy;
-            }else{
-                s1.y -= Math.sin(angle) / dy;
-                s2.y += Math.sin(angle) / dy;
-            }
-
-            if(s1.x > s2.x){
-                s1.x += Math.cos(angle) / dx;
-                s2.x -= Math.cos(angle) / dx;
-            }else {
-                s1.x -= Math.cos(angle) / dx;
-                s2.x += Math.cos(angle) / dx;
-            }
+            s1.move(angle,dx,(s1.x > s2.x) , (s1.y > s2.y));
+            s2.move(angle,dx,(s1.x < s2.x) , (s1.y < s2.y));
 
         }
         repaint();
