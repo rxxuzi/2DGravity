@@ -101,7 +101,7 @@ public class Core extends JPanel {
 
     public void sleep() {
         try {
-            Thread.sleep(1);
+            Thread.sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

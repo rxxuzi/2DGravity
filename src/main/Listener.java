@@ -11,7 +11,7 @@ public class Listener implements MouseListener, MouseMotionListener {
 
     public int mx;
     public int my;
-    private static final int rad = 30;
+    private static final int rad =  10;
     public static int clickCount = 0;
     private static final int numOfColor = 12;
 
@@ -51,7 +51,15 @@ public class Listener implements MouseListener, MouseMotionListener {
         mx = e.getX();
         my = e.getY();
 //        int rad = R.nextInt(30) * 2 + 10;
-        Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set()));
+        if(e.getButton() == MouseEvent.BUTTON1){
+            Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set()));
+        } else if (e.getButton() == MouseEvent.BUTTON3){
+            for(int i = 0; i < 100; i++){
+//                int rad = R.nextInt(6) * 5 + 10;
+//                Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set()));
+                Core.spheres.add(new Sphere(rad, mx - rad, my - rad, set(20,20,50)));
+            }
+        }
         clickCount++;
     }
 

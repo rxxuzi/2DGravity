@@ -3,7 +3,7 @@ package main;
 import java.awt.*;
 
 public class Sphere {
-    public static final boolean Fall = true;
+    public static final boolean Fall = false;
 
     public double r;
     public double x;
