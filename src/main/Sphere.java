@@ -3,7 +3,7 @@ package main;
 import java.awt.*;
 
 public class Sphere {
-    public static final boolean Fall = false;
+    public static final boolean Fall = true;
 
     public double r;
     public double x;
@@ -61,12 +61,12 @@ public class Sphere {
 
     public void draw(Graphics g){
         g.setColor(Color.WHITE);
-        g.drawOval((int) x, (int) y, (int) r*2, (int) r*2);
+        g.drawOval((int) (x-r), (int) (y-r), (int) r*2, (int) r*2);
     }
     public void fill(Graphics g){
         if(isFixed) g.setColor(Color.WHITE);
         g.setColor(C);
-        g.fillOval((int) x, (int) y, (int) r*2, (int) r*2);
+        g.fillOval((int) (x-r), (int) (y-r), (int) r*2, (int) r*2);
     }
 
     public void fall(){

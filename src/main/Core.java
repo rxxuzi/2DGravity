@@ -65,17 +65,17 @@ public class Core extends JPanel {
         return Math.abs(a);
     }
     private void border(Sphere s){
-        if(s.x < 0 ){
-            s.x = 0;
+        if(s.x < 0 + s.r){
+            s.x = s.r ;
         }
-        if(s.y < 0 ){
-            s.y = 0;
+        if(s.y < 0 + s.r){
+            s.y = s.r;
         }
-        if(s.x > getWidth() - s.r*2 ){
-            s.x = getWidth() - s.r*2;
+        if(s.x > getWidth()  - s.r  ){
+            s.x = getWidth() - s.r ;
         }
-        if (s.y > getHeight() - s.r*2){
-            s.y = getHeight() - s.r*2;
+        if (s.y > getHeight() - s.r){
+            s.y = getHeight() - s.r;
             s.onTheFloor = true;
         }else{
             s.onTheFloor = false;
@@ -83,7 +83,7 @@ public class Core extends JPanel {
 
     }
     public void Calculate(Sphere s1 , Sphere s2){
-        double a = abs(abs(s1.x) - abs(s2.x));
+        double a = abs(abs(s1.x) - abs(s2.x)); //s1とs2のxの距離
         double b = abs(abs(s1.y) - abs(s2.y));
         double c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
         double d = s1.r + s2.r;
