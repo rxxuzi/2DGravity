@@ -1,17 +1,16 @@
 package main;
 
+
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.Random;
 
-public class Listener implements MouseListener, MouseMotionListener {
+public class Listener extends KeyAdapter implements MouseListener, MouseMotionListener {
     Random R = new Random();
 
     public int mx;
     public int my;
-    private static final int rad =  30;
+    private static final int rad =  15;
     public static int clickCount = 0;
     private static final int numOfColor = 12;
 
@@ -51,13 +50,14 @@ public class Listener implements MouseListener, MouseMotionListener {
         mx = e.getX();
         my = e.getY();
         if(e.getButton() == MouseEvent.BUTTON1){
-            int rad = R.nextInt(15) * 2 + 15;
+//            int rad = R.nextInt(15) * 2 + 15;
             Core.spheres.add(new Sphere(rad, mx - (rad >> 1), my - (rad >> 1), set()));
             clickCount++;
         } else if (e.getButton() == MouseEvent.BUTTON3){
-            for(int i = 0; i < 10; i++){
-                int rad = R.nextInt(15) * 2 + 15;
-                Core.spheres.add(new Sphere(rad, mx - (rad >> 1), my - (rad >> 1), set(20,20,50)));
+            for(int i = 0; i < 12; i++){
+//                int rad = R.nextInt(15) * 2 + 15;
+//                Core.spheres.add(new Sphere(rad, mx - (rad >> 1), my - (rad >> 1), set(20,20,50)));
+                Core.spheres.add(new Sphere(rad, mx - (rad >> 1), my - (rad >> 1), set()));
                 clickCount++;
             }
         }

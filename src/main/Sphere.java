@@ -9,7 +9,6 @@ public class Sphere {
     public double x;
     public double y;
     public double z;
-    public double density;
     public double mass;
     public static final double G = 6.67e-11;
     public boolean isFixed = false;
@@ -38,11 +37,13 @@ public class Sphere {
         this.isFixed = isFixed;
         this.cx = x + r;
         this.cy = y + r;
+        this.z = 0;
+        this.mass = (4.0d/3.0d) * Math.PI * Math.pow(r, 3);
     }
 
     public void move(double angle , double d , boolean positiveX , boolean positiveY){
-        double t = 1;
-        if(Fall) t = 2;
+        double t = 0.1d;
+        if(Fall) t = 1.9d; else t = 0.1d;
 
         if(!isFixed){
             if(positiveX){
@@ -73,7 +74,7 @@ public class Sphere {
         if(Fall) {
             if (!isFixed) {
                 if(!onTheFloor) {
-                    this.y += 0.9d;
+                    this.y += 1.0d;
                 }
             }
         }

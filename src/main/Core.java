@@ -1,6 +1,8 @@
 package main;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,13 +15,30 @@ public class Core extends JPanel {
         this.setBackground(Color.BLACK);
         this.addMouseListener(L);
         this.addMouseMotionListener(L);
+        this.addKeyListener(new KeyListener());
 
 //        spheres.add(new Sphere(50,400,400));
 //        spheres.add(new Sphere(50,401,403));
 //        spheres.add(new Sphere(50,402,402));
         System.out.println(spheres.size());
 
-//        spheres.add(new Sphere(30,400,300,true));
+        nail();
+    }
+
+    private void nail(){
+        int y = 200;
+        int dx;
+        for (int i = 0; i < 7; i++) {
+            for (int x = 0 ;  x < 800; x += 50){
+                if(i % 2 == 0){
+                    dx = 25;
+                }else {
+                    dx = 0;
+                }
+                spheres.add(new Sphere(7,x + dx,y,true));
+            }
+            y += 50;
+        }
     }
 
     @Override
@@ -28,15 +47,20 @@ public class Core extends JPanel {
         super.paintComponent(g);
         g.setColor(Color.WHITE);
 
+        int w =getWidth();
+        int h = getHeight();
+        int d = 10;
+
 
         for(int i = 0 ; i < spheres.size() ; i ++ ){
             for(int j = 0 ; j < i ; j ++ ){
                 sameCoordinates(spheres.get(i), spheres.get(j));
                 Calculate(spheres.get(i), spheres.get(j));
             }
-
-            border(spheres.get(i));
-            spheres.get(i).draw(g);
+            if(!spheres.get(i).isFixed){
+                border(spheres.get(i));
+            }
+//            spheres.get(i).draw(g);
 
             switch (i % 3){
                 case 0 -> g.setColor(Color.RED);
@@ -89,7 +113,7 @@ public class Core extends JPanel {
         double d = s1.r + s2.r;
         double angle = Math.atan(b/a);
 
-        double dx = 1.5d;
+        double dx = 1.3d;
 
         if(c <= d){
 //            Log.write(s1 +","+ s2 + "covered , s1: (" + s1.cx + "," + s1.cy + "), s2: (" + s2.cx + "," + s2.cy + ")");
@@ -106,5 +130,15 @@ public class Core extends JPanel {
             e.printStackTrace();
         }
         repaint();
+    }
+
+    private class KeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                Core.spheres.clear();
+                System.out.println("Space");
+            }
+        }
     }
 }
