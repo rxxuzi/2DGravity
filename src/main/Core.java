@@ -17,12 +17,9 @@ public class Core extends JPanel {
         this.addMouseMotionListener(L);
         this.addKeyListener(new KeyListener());
 
-//        spheres.add(new Sphere(50,400,400));
-//        spheres.add(new Sphere(50,401,403));
-//        spheres.add(new Sphere(50,402,402));
         System.out.println(spheres.size());
 
-        nail();
+//        nail();
     }
 
     private void nail(){

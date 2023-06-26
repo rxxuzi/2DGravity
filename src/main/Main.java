@@ -11,5 +11,11 @@ public class Main {
 //        frame.setResizable(false);
         frame.setVisible(true);
         frame.add(core);
+        int a = 0;
+        int b = 10;
+        double e = 0.01;
+        for(double x = a ; x < b ; x+=e){
+            System.out.println(x * 2);
+        }
     }
 }
